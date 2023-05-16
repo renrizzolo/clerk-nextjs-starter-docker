@@ -1,3 +1,21 @@
+```sh
+npm i
+```
+
+- Have docker engine up and running, then run:
+
+```sh
+docker-compose up
+```
+
+To force a rebuild:
+
+```sh
+docker-compose up --build --force-recreate
+```
+
+View site at `http://localhost`
+
 <p align="center">
   <a href="https://www.clerk.dev/?utm_source=github&utm_medium=starter_repos&utm_campaign=nextjs_starter" target="_blank" align="center">
     <picture>

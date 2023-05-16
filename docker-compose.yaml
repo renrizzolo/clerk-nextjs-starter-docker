@@ -1,0 +1,13 @@
+version: "3.6"
+
+services:
+  # this service should use the web image after you build it
+  web:
+    build:
+      dockerfile: ./Dockerfile
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf

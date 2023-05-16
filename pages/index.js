@@ -107,7 +107,7 @@ const Main = () => (
         </Link>
       </div>
     </div>
-
+    <PublicAPIRequest />
     <SignedIn>
       <APIRequest />
     </SignedIn>
@@ -174,6 +174,40 @@ const APIRequest = () => {
       <h4>pages/api/getAuthenticatedUserId.js</h4>
       <pre>
         <code className="language-js">{apiSample}</code>
+      </pre>
+    </div>
+  );
+};
+const PublicAPIRequest = () => {
+  const [response, setResponse] = React.useState("// Click above to run the request");
+  const makeRequest = async () => {
+    setResponse("// Loading...");
+
+    try {
+      const res = await fetch("/api/healthcheck");
+      const body = await res.json();
+      setResponse(JSON.stringify(body, null, "  "));
+    } catch (e) {
+      setResponse(e.message);
+    }
+  };
+  return (
+    <div className={styles.backend}>
+      <h2>API request example</h2>
+      <div className={styles.card}>
+        <button target="_blank" rel="noopener" className={styles.cardContent} onClick={() => makeRequest()}>
+          <img src="/icons/server.svg" />
+          <div>
+            <h3>fetch('/api/healthcheck')</h3>
+          </div>
+          <div className={styles.arrow}>
+            <img src="/icons/download.svg" />
+          </div>
+        </button>
+      </div>
+      <h4>Response</h4>
+      <pre>
+        <code className="language-js">{response}</code>
       </pre>
     </div>
   );
